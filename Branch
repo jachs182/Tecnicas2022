@@ -52,3 +52,24 @@ def nextVerTex(a,i,l,k):
         a[j] = a[j]+1
         return (a,j)
   return(a,0)
+  
+
+def openIRL(IRL,n):
+
+  DMA = []
+
+  with open(IRL, "r") as archivo:
+
+    for linea in archivo:
+
+       lis = []
+
+       aux = 0;
+       for colum in linea:
+
+        if(aux < n):
+          lis.append(colum)
+          aux = aux+1
+          DMA.append(lis)
+
+  return DMA
