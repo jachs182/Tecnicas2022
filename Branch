@@ -1,0 +1,54 @@
+def branch(dna,t,n,l):
+    s = [1,1,1,1,1,1]
+    bestScore = 0
+    i = 1
+    while i > 0:
+        if (i<t):
+            optimisticScore = Score(s) + (t-i) * l
+            if optimisticScore < bestScore:
+              (s,i) = bypass(s,i,t,n-l+1)
+            else:
+              (s,i) = nextVerTex(s,i,t,n-l+1)
+        else:
+          if Score(s,dna) >  bestScore:
+            bestScore = Score(s)
+            #bestMotif = 
+            
+
+
+
+def Score(s):
+    uno_c = 0
+    dos_c = 0
+    tres_c = 0
+    cuat_c = 0
+    for i in range(len(s)):
+        if(s[i] == 1):
+          uno_c +=1
+        elif (s[i] == 2):
+          dos_c +=1
+        elif (s[i] == 3):
+          tres_c +=1
+        elif(s[i] == 4):
+          cuat_c +=1
+    s = uno_c + dos_c + tres_c + cuat_c
+    return s
+
+def bypass(a,i,l,k):
+  for j in range(i,1,-1):
+    if a[j] < k:
+      a[j] = a[j] + 1
+      return (a, j)
+  return(a,0)
+
+
+def nextVerTex(a,i,l,k):
+  if i<l:
+    a[i+1] = 1
+    return(a,i+1)
+  else:
+    for j in range(l ,1, -1):
+      if a[j] < k:
+        a[j] = a[j]+1
+        return (a,j)
+  return(a,0)
